@@ -1,1 +1,1 @@
-web: gunicorn stage_django.wsgi --log-file-
+web: gunicorn stage_django.wsgi 
