@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{%block content%}
+
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+
+            <h6>Oops something  went wrong error: {{error}}</h6>
+            <br>
+
+            <a href="{% url 'getplots' %}" class="btn btn--main btn--sm">Go back</a>
+        </div>
+    </div>
+</main>
+{% endblock content %}

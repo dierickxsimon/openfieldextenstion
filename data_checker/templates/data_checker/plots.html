@@ -1,0 +1,112 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Plots</h1>
+
+<div>
+    <canvas id="myChart" width="30" height="10"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    const NUMBER_CFG = { count: 7, min: -100, max: 100 };
+
+    const data = {
+        labels: {{labels|safe}},
+        datasets: [
+            {
+                label: 'Walking (0-6km/h)',
+                data: {{data_max_walking|safe}},
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                stack: 'Stack 1',
+            },
+            {
+                label: 'jogging (6-13,9km/h)',
+                data: {{data_max_jogging|safe}},
+                backgroundColor: 'rgba(255, 159, 64, 0.5)',
+                stack: 'Stack 1',
+            },
+            {
+                label: 'running (14-19,9km/h)',
+                data: {{data_max_running|safe}},
+                backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                stack: 'Stack 1',
+            },
+            {
+                label: 'HSR (20-25km/h)',
+                data: {{data_max_hsr|safe}},
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                stack: 'Stack 1',
+            },
+            {
+                label: 'sprinting (>25km/h)',
+                data: {{data_max_sprinting|safe}},
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                stack: 'Stack 1',
+            },
+            {
+                label: 'Walking (0-6km/h)',
+                data: {{data_temp_walking|safe}},
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                stack: 'Stack 0',
+            },
+            {
+                label: 'jogging (6-13,9km/h)',
+                data: {{data_temp_jogging|safe}},
+                backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                stack: 'Stack 0',
+            },
+            {
+                label: 'running (14-19,9km/h)',
+                data: {{data_temp_running|safe}},
+                backgroundColor: 'rgba(255, 205, 86, 0.8)',
+                stack: 'Stack 0',
+            },
+            {
+                label: 'HSR (20-25km/h)',
+                data: {{data_temp_hsr|safe}},
+                backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                stack: 'Stack 0',
+            },
+            {
+                label: 'sprinting (>25km/h)',
+                data: {{data_temp_sprinting|safe}},
+                backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                stack: 'Stack 0',
+            },
+        ],
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'light is referatial, dark is the selected data',
+                },
+            },
+            responsive: true,
+            interaction: {
+                intersect: false,
+            },
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true,
+                },
+            },
+        },
+    };
+
+    new Chart(ctx, config);
+</script>
+
+{% endblock content %}

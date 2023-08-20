@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a span class="tag tag--pill tag--main" href="">
+                <small> Back </small>
+              </a>
+            <br>
+            
+            <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Input:Text -->
+                {% for field in form %}
+                <div class="form__field">
+                  <label for="formInput#text"> {{field.label}} </label>
+                  {{field}}
+                  {% if field.help_text %}
+                    <small> {{field.help_text}} </small>
+                  {% endif %}
+
+                  <br>
+          
+                  {% for error in field.errors %}
+                  <h1 style="color: red;"> {{error}} </h1>
+                  {% endfor %}
+
+                </div>
+                {% endfor %}
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}
