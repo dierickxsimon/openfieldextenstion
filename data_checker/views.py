@@ -29,7 +29,7 @@ def getAthletes(request):
             athlete_inst = Athlete(
                 id=athlete['id'],
                 first_name=athlete['first_name'],
-                last_name=athlete['last_name']
+                last_name=athlete['last_name'],
             )
             athlete_inst.save()
 
